@@ -4,8 +4,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lectures", "Lectures", "{4E209BAE-F281-4005-8BD4-AC0CC09DC2BB}"
+	ProjectSection(SolutionItems) = preProject
+		SQL\001_Basic_Functions_Example.sql = SQL\001_Basic_Functions_Example.sql
+		SQL\001_Basic_Querys.sql = SQL\001_Basic_Querys.sql
+		SQL\001_CRUD_Operations.sql = SQL\001_CRUD_Operations.sql
+		SQL\001_DDL_Commands.sql = SQL\001_DDL_Commands.sql
+		SQL\002_Aggregate_Functions_Grouping_Functions.sql = SQL\002_Aggregate_Functions_Grouping_Functions.sql
+		SQL\002_Formatting_Strings.sql = SQL\002_Formatting_Strings.sql
+		SQL\002_Primary_Key_Identity_GUID.sql = SQL\002_Primary_Key_Identity_GUID.sql
+		SQL\002_Tempory_Tables.sql = SQL\002_Tempory_Tables.sql
+		SQL\002_Variables.sql = SQL\002_Variables.sql
+		SQL\003_Join_Examples_One_To_Many.sql = SQL\003_Join_Examples_One_To_Many.sql
+		SQL\003_Join_Many_To_Many.sql = SQL\003_Join_Many_To_Many.sql
+		SQL\003_Join_Self_Referencing_Table.sql = SQL\003_Join_Self_Referencing_Table.sql
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Excersises", "Excersises", "{F886F376-41E4-492A-BDD1-85870CB3AB08}"
+	ProjectSection(SolutionItems) = preProject
+		Exercises\E001_CRUD.sql = Exercises\E001_CRUD.sql
+		Exercises\E002_Aggregate.sql = Exercises\E002_Aggregate.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution

@@ -2,7 +2,12 @@ use everyloop;
 
 -- 1: GoT - Format
 
-select Title, Format(Season, 'S0#') + Format(EpisodeInSeason, 'E0#') as Episode from GameOfThrones;
+select 
+	Title, 
+	'S' + Format(Season, '0#') + 'E' + Format(EpisodeInSeason, '0#') as 'Episode', -- Solution 1
+	concat('S', Format(Season, '0#'), 'E', Format(EpisodeInSeason, '0#')) as 'Episode' -- Solution 2: Concat = better
+from 
+	GameOfThrones;
 
 -- 2: Update users
 
@@ -13,7 +18,8 @@ select UserName from UsersExcersise;
 
 select 
 	SUBSTRING(UserName, 1, 2) + SUBSTRING(UserName, 4, 2) 
-from UsersExcersise;
+from 
+	UsersExcersise;
 
 update UsersExcersise 
 	set UserName = SUBSTRING(UserName, 1, 2) + SUBSTRING(UserName, 4, 2); 
@@ -91,7 +97,7 @@ select * from TypesExcersise;
 
 select 
 	Integer,
-	Cast(Integer AS FLOAT) * 0.01 as Float,
+	Cast(Integer AS FLOAT) * 0.01 as 'Float',
 	String,
 	DATETIME2FROMPARTS
 	(

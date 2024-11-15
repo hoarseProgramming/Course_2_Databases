@@ -1,7 +1,7 @@
 use everyloop;
 
 -- 1: GoT - Format
-
+select * from GameOfThrones
 select 
 	Title, 
 	'S' + Format(Season, '0#') + 'E' + Format(EpisodeInSeason, '0#') as 'Episode', -- Solution 1
@@ -17,9 +17,10 @@ select UserName from Users;
 select UserName from UsersExcersise;
 
 select 
-	SUBSTRING(UserName, 1, 2) + SUBSTRING(UserName, 4, 2) 
+	SUBSTRING(UserName, 1, 2) + SUBSTRING(UserName, 4, 2), 
+	Concat(SUBSTRING(UserName, 1, 2), SUBSTRING(UserName, 4, 2))
 from 
-	UsersExcersise;
+	Users;
 
 update UsersExcersise 
 	set UserName = SUBSTRING(UserName, 1, 2) + SUBSTRING(UserName, 4, 2); 
@@ -27,6 +28,10 @@ update UsersExcersise
 -- 3: Update Airports
 
 select * into AirportsExcersise from Airports;
+
+select * 
+from Airports
+	where Time IS NULL OR DST IS NULL;
 
 select * 
 from AirportsExcersise
@@ -43,7 +48,14 @@ where DST IS NULL;
 
 -- 4: Remove elements
 
+select * from Elements;
 select * into ElementsExcersise from Elements;
+
+select * 
+from Elements
+where Name in ('Erbium', 'Helium', 'Nitrogen')
+OR Name like '[dkmou]%'
+order by Name;
 
 select * 
 from ElementsExcersise

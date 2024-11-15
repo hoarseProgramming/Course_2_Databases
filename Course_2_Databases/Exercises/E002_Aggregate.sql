@@ -2,35 +2,34 @@ use everyloop;
 
 -- 1: Elements
 
---select * from Elements
+select * from Elements
 
---select 
---	Period,
---	min(Number) as 'from',
---	max(Number) as 'to',
---	Format(avg(cast(Stableisotopes as float)), 'F2') as 'average isotopes',
---	STRING_AGG(Symbol, ', ') as 'symbols'
-
---from 
---	Elements
---group by Period;
+select 
+	Period,
+	min(Number) as 'from element number',
+	max(Number) as 'to element number',
+	Format(avg(cast(Stableisotopes as float)), 'F2') as 'average isotopes',
+	STRING_AGG(Symbol, ', ') as 'symbols'
+from 
+	Elements
+group by Period;
 
 ---- 2: Cities with minimum 2 customers
 
---select * from company.Customers order by City
+select * from company.Customers order by City
 
---select	
---	Region,
---	Country,
---	City,
---	count(*) as 'Customers'
---from
---	company.customers
---group by
---	Region,
---	Country,
---	City
---having count(*) >= 2
+select	
+	Region,
+	Country,
+	City,
+	count(*) as 'Customers'
+from
+	company.customers
+group by
+	Region,
+	Country,
+	City
+having count(*) >= 2
 
 -- 3: GoT aggregated string
 
@@ -45,7 +44,6 @@ select
 	@gameOfThronesString += FORMAT(max([Original air date]), 'yyyy') + '. ',
 	@gameOfThronesString += 'There was a total of ' + cast(count(*) as nvarchar) + ' episodes in the season, ',
 	@gameOfThronesString += 'where each episode was watched by an average of ' + format(avg([U.S. viewers(millions)]), 'F1') + ' million people in the U.S.' + nchar(13)
-	
 from 
 	GameOfThrones
 group by Season
@@ -71,15 +69,12 @@ order by
 select * from Countries
 order by region;
 
-
-
 select
 	Region,
 	count(*) as 'Number of countries',
 	sum(cast([Population] as bigint)) as 'Total number of citizens',
 	cast(sum([Area (sq# mi#)]) as nvarchar) + ' m' + nchar(0x00B2) as 'Total Area (m²)',
 	Format(sum(cast([population] as bigint)) / sum(cast([Area (sq# mi#)] as decimal)), 'F2') as 'Population density per m²'
-
 from
 	Countries
 group by 
@@ -90,12 +85,12 @@ group by
 
 select * from Airports
 
-select top 400
+select 
 	IIF
 	(
 		CHARINDEX(',', REVERSE([Location served])) > 0,
 		TRIM(TRIM(',' from REVERSE(LEFT(REVERSE([Location served]), CHARINDEX(',', REVERSE([Location served])) - 2)))),
-		[Location served]
+		TRIM([Location served])
 	) as 'Country',
 	count(IATA) as 'Number of Airports',
 	count(*) - count(ICAO) as 'Number of missing ICAO codes',
@@ -107,7 +102,8 @@ Group by
 	(
 		CHARINDEX(',', REVERSE([Location served])) > 0,
 		TRIM(TRIM(',' from REVERSE(LEFT(REVERSE([Location served]), CHARINDEX(',', REVERSE([Location served])) - 2)))),
-		[Location served]
+		TRIM([Location served])
 	)
 order by
 	count(IATA) desc
+

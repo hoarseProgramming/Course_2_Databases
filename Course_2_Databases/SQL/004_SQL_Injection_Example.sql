@@ -1,0 +1,9 @@
+use everyloop;
+
+-- SQL Injection examples
+
+select '', TABLE_SCHEMA, TABLE_NAME from INFORMATION_SCHEMA.TABLES;
+
+select TABLE_SCHEMA, COLUMN_NAME, DATA_TYPE 
+from INFORMATION_SCHEMA.COLUMNS
+where TABLE_NAME = 'Airports';

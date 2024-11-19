@@ -4,6 +4,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lectures", "Lectures", "{4E209BAE-F281-4005-8BD4-AC0CC09DC2BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Excersises", "Excersises", "{F886F376-41E4-492A-BDD1-85870CB3AB08}"
+	ProjectSection(SolutionItems) = preProject
+		Exercises\E001_CRUD.sql = Exercises\E001_CRUD.sql
+		Exercises\E002_Aggregate.sql = Exercises\E002_Aggregate.sql
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L004_SQL_Client", "C#_Lectures\L004_SQL_Client\L004_SQL_Client.csproj", "{DA60FFFE-ED12-4125-8234-19C627DC6A5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L004_SQL_Injection", "C#_Lectures\L004_SQL_Injection\L004_SQL_Injection.csproj", "{14AD1483-EFAF-441D-986A-C9FEE9415F1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{2E45C8B8-0C05-4662-973A-BFA1395222CD}"
 	ProjectSection(SolutionItems) = preProject
 		SQL\001_Basic_Functions_Example.sql = SQL\001_Basic_Functions_Example.sql
 		SQL\001_Basic_Querys.sql = SQL\001_Basic_Querys.sql
@@ -17,17 +29,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lectures", "Lectures", "{4E
 		SQL\003_Join_Examples_One_To_Many.sql = SQL\003_Join_Examples_One_To_Many.sql
 		SQL\003_Join_Many_To_Many.sql = SQL\003_Join_Many_To_Many.sql
 		SQL\003_Join_Self_Referencing_Table.sql = SQL\003_Join_Self_Referencing_Table.sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Excersises", "Excersises", "{F886F376-41E4-492A-BDD1-85870CB3AB08}"
-	ProjectSection(SolutionItems) = preProject
-		Exercises\E001_CRUD.sql = Exercises\E001_CRUD.sql
-		Exercises\E002_Aggregate.sql = Exercises\E002_Aggregate.sql
+		SQL\004_ACID_Commit_Rollback.sql = SQL\004_ACID_Commit_Rollback.sql
+		SQL\004_SQL_Injection_Example.sql = SQL\004_SQL_Injection_Example.sql
 	EndProjectSection
 EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA60FFFE-ED12-4125-8234-19C627DC6A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA60FFFE-ED12-4125-8234-19C627DC6A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA60FFFE-ED12-4125-8234-19C627DC6A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA60FFFE-ED12-4125-8234-19C627DC6A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14AD1483-EFAF-441D-986A-C9FEE9415F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14AD1483-EFAF-441D-986A-C9FEE9415F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14AD1483-EFAF-441D-986A-C9FEE9415F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14AD1483-EFAF-441D-986A-C9FEE9415F1B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DA60FFFE-ED12-4125-8234-19C627DC6A5B} = {4E209BAE-F281-4005-8BD4-AC0CC09DC2BB}
+		{14AD1483-EFAF-441D-986A-C9FEE9415F1B} = {4E209BAE-F281-4005-8BD4-AC0CC09DC2BB}
+		{2E45C8B8-0C05-4662-973A-BFA1395222CD} = {4E209BAE-F281-4005-8BD4-AC0CC09DC2BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4E1D4F05-17AC-42D4-98F9-5FE0DD0A3FAA}

@@ -12,7 +12,8 @@ select
 	STRING_AGG(Symbol, ', ') as 'symbols'
 from 
 	Elements
-group by Period;
+group by 
+	Period;
 
 ---- 2: Cities with minimum 2 customers
 
@@ -29,7 +30,8 @@ group by
 	Region,
 	Country,
 	City
-having count(*) >= 2
+having 
+	count(*) >= 2
 
 -- 3: GoT aggregated string
 
@@ -46,7 +48,8 @@ select
 	@gameOfThronesString += 'where each episode was watched by an average of ' + format(avg([U.S. viewers(millions)]), 'F1') + ' million people in the U.S.' + nchar(13)
 from 
 	GameOfThrones
-group by Season
+group by 
+	Season
 
 print @gameOfThronesString
 
@@ -55,9 +58,14 @@ print @gameOfThronesString
 select * from Users;
 
 select
-	FirstName + ' ' + LastName as 'Name',
+	CONCAT(FirstName, ' ', LastName) as 'Name',
 	DATEDIFF(YEAR, DATEFROMPARTS(cast('19' + left(id, 2) as int), SUBSTRING(id, 3, 2), SUBSTRING(id, 5, 2)), GETDATE()) as 'Age',
-	iif(SUBSTRING(id, 10, 1) % 2 = 0, 'Woman', 'Man') as 'Sex'
+	IIF
+	(
+		SUBSTRING(id, 10, 1) % 2 = 0, 
+		'Woman', 
+		'Man'
+	) as 'Sex'
 from
 	Users
 order by
@@ -80,30 +88,87 @@ from
 group by 
 	Region
 
-
 -- 6: Group by country
 
-select * from Airports
+----------------- Working pretty good -----------------------
+
+select 
+	IATA,
+	ICAO,
+	[Location served]
+INTO AirportsExercise2
+from Airports
 
 select 
 	IIF
 	(
-		CHARINDEX(',', REVERSE([Location served])) > 0,
-		TRIM(TRIM(',' from REVERSE(LEFT(REVERSE([Location served]), CHARINDEX(',', REVERSE([Location served])) - 2)))),
-		TRIM([Location served])
+		CHARINDEX(',', [Location served]) != 0,
+		IIF
+		(
+			PATINDEX('%[0-9]%', [Location served]) > 0,
+			RIGHT
+			(
+				REPLACE([Location served], SUBSTRING([Location served], PATINDEX('%[0-9]%', [Location served]), 1), ''),
+				CHARINDEX
+				(
+					',',
+					REVERSE
+					(
+						REPLACE([Location served], SUBSTRING([Location served], PATINDEX('%[0-9]%', [Location served]), 1), '')
+					)
+				) - 2
+			),
+			RIGHT([Location served], CHARINDEX(',', REVERSE([Location served])) - 2)
+		),
+		[Location served]
 	) as 'Country',
-	count(IATA) as 'Number of Airports',
-	count(*) - count(ICAO) as 'Number of missing ICAO codes',
-	FORMAT(cast(count(*) - count(ICAO) as decimal) / count(*), 'P') as 'Percentage missing ICAO'
+	IATA,
+	ICAO
+INTO 
+	AirportsExercise3
 from 
-	Airports
-Group by
-	IIF
-	(
-		CHARINDEX(',', REVERSE([Location served])) > 0,
-		TRIM(TRIM(',' from REVERSE(LEFT(REVERSE([Location served]), CHARINDEX(',', REVERSE([Location served])) - 2)))),
-		TRIM([Location served])
-	)
-order by
-	count(IATA) desc
+	AirportsExercise2
 
+
+SELECT 
+	Country, 
+	COUNT(IATA) AS 'Number of Airports',
+	COUNT(IATA) - COUNT(ICAO) AS 'Number of airports missing ICAO code',
+	FORMAT(CAST(COUNT(IATA) - COUNT(ICAO) AS decimal) / COUNT(IATA), 'P') AS 'Percentage missing ICAO'
+FROM 
+	AirportsExercise3
+GROUP BY
+	Country
+ORDER BY 
+	COUNT(IATA) desc
+
+----- Testing REPLACE --------------
+--select
+--	REPLACE(Country, SUBSTRING(Country, PATINDEX('%[0-9]%', Country), 1), '')
+--from 
+--	Airportsexercise3
+
+
+
+-------- Looking for special characters ------------------
+
+--DECLARE @position INT, @nstring NVARCHAR(MAX)
+--SET @position = 1;
+--SELECT 
+--	@nstring = Country 
+--from 
+--	Airportsexercise3
+--where
+--	IATA = 'ZMH'
+
+--PRINT 
+--	'Character #' + ' ' + 'Unicode Character' + ' ' + 'UNICODE Value';  
+--WHILE @position <= LEN(@nstring)  
+
+--BEGIN;
+--	SELECT 
+--		@position AS [position],
+--		SUBSTRING(@nstring, @position, 1) AS [character],
+--		UNICODE(SUBSTRING(@nstring, @position, 1)) AS [code_point];
+--	SET @position = @position + 1;
+--END;

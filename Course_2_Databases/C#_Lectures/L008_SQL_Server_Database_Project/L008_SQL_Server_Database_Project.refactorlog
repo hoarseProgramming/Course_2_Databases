@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="77944e5b-e416-4448-8705-9ae2a1c12472" ChangeDateTime="11/27/2024 10:56:37">
+    <Property Name="ElementName" Value="[dbo].[CityView]" />
+    <Property Name="ElementType" Value="SqlView" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[CityView1]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6ca14b1f-0a0a-4ae2-8536-12995a1e675b" ChangeDateTime="11/27/2024 10:57:16">
+    <Property Name="ElementName" Value="[dbo].[CityView1]" />
+    <Property Name="ElementType" Value="SqlView" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[CityView]" />
+  </Operation>
+</Operations>

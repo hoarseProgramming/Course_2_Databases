@@ -8,7 +8,7 @@ select
 	Period,
 	min(Number) as 'from element number',
 	max(Number) as 'to element number',
-	Format(avg(cast(Stableisotopes as float)), 'F2') as 'average isotopes',
+	Format(SUM(Stableisotopes) / cast(count(Stableisotopes) AS DECIMAL), 'F2') as 'average isotopes',
 	STRING_AGG(Symbol, ', ') as 'symbols'
 from 
 	Elements
@@ -16,6 +16,8 @@ group by
 	Period;
 
 ---- 2: Cities with minimum 2 customers
+
+select * from company.customers
 
 select * from company.Customers order by City
 
@@ -92,6 +94,8 @@ group by
 
 ----------------- Working pretty good -----------------------
 
+select * from Airports
+
 select 
 	IATA,
 	ICAO,
@@ -129,7 +133,6 @@ INTO
 from 
 	AirportsExercise2
 
-
 SELECT 
 	Country, 
 	COUNT(IATA) AS 'Number of Airports',
@@ -140,7 +143,7 @@ FROM
 GROUP BY
 	Country
 ORDER BY 
-	COUNT(IATA) desc
+	Country
 
 ----- Testing REPLACE --------------
 --select
